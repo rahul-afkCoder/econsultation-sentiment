@@ -1,0 +1,4 @@
+## Notes
+- The project uses HF pipelines for quick prototyping. For production, export
+a local model to `app/models` and update the `ModelService`.
+- Word cloud endpoint returns a base64 PNG.

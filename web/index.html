@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>eConsultation Sentiment Demo</title>
+    <style>
+    body{font-family: Arial; padding:20px}
+    textarea{width:95%; height:120px}
+    #result{margin-top:12px}
+    </style>
+</head>
+<body>
+    <h2>Single comment test</h2>
+    <textarea id="comment">Type or paste a stakeholder comment here.</textarea><br>
+    <button onclick="predict()">Predict</button>
+    <div id="result"></div>
+    
+    <script>
+    async function predict(){
+        const txt = document.getElementById('comment').value;
+        const payload = { comment_text: txt };
+        const res = await fetch('/predict_single', {
+            method: 'POST', headers: {'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+        const j = await res.json();
+        document.getElementById('result').innerText = JSON.stringify(j, null, 2);
+        }
+    </script>
+</body>
+</html>
